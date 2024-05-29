@@ -1,1 +1,0 @@
-/home/chungus/.config/emacs/elpaca/repos/swiper/colir.el

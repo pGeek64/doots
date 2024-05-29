@@ -1,1 +1,0 @@
-/home/chungus/.config/emacs/elpaca/repos/rainbow-mode/rainbow-mode.el
