@@ -1,0 +1,82 @@
+monitor=,preferred,auto,auto 
+
+source = ~/.config/hypr/windowrule.conf
+source = ~/.config/hypr/startup.conf
+source = ~/.config/hypr/env.conf
+source = ~/.config/hypr/binds.conf
+
+input {
+    kb_layout = us
+    kb_variant =
+    kb_model =
+    kb_options =
+    kb_rules =
+
+    follow_mouse = 1
+
+    touchpad {
+        natural_scroll = no
+    }
+
+    sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
+}
+
+general {
+
+    gaps_in = 3
+    gaps_out = 12
+    border_size = 2
+    col.active_border = rgba(89b4faee) #rgba(00529fee) 45deg
+    col.inactive_border = rgba(958da7aa)
+
+    layout = dwindle
+}
+
+decoration {
+
+    rounding = 10
+    blur = yes
+    blur_size = 7
+    blur_passes = 3
+    blur_new_optimizations = on
+
+    drop_shadow = yes
+    shadow_range = 4
+    shadow_render_power = 11
+    col.shadow = rgba(1a1a1aee)
+}
+
+animations {
+    enabled = yes
+
+
+    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
+
+    animation = windows, 1, 3, myBezier
+    animation = windowsOut, 1, 3, default, popin 80%
+    animation = border, 1, 3, default
+#    animation = borderangle, 1, 8, default
+    animation = fade, 1, 7, default
+    animation = workspaces, 1, 3, default
+}
+
+dwindle {
+    pseudotile = yes # master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+    preserve_split = yes # you probably want this
+}
+
+master {
+    new_is_master = true
+}
+
+gestures {
+
+    workspace_swipe = off
+}
+
+device:epic-mouse-v1 {
+    sensitivity = -0.5
+}
+
+
+

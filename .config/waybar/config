@@ -1,0 +1,107 @@
+{
+  "layer": "top", // Waybar at top layer
+  // "position": "bottom", // Waybar position (top|bottom|left|right)
+  "height": 35, // Waybar height (to be removed for auto height)
+  // "spacing": 3,
+  "margin-left":3,
+  "margin-right":3, 
+  "margin-top":2,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": [],
+  "modules-right": ["tray","custom/updates","custom/record","pulseaudio","memory","disk","custom/weather","clock"],
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "active-only":false,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1", //
+      "2": "2", //
+      "3": "code", //
+      "4": "msg", //
+      "5": "mus", //
+      "6": "obs",
+      "7": "dis",
+      "8": "mpv",
+      "9": "read",
+      "urgent": "  ",
+      "focused": "",
+      "default": ""
+    },
+    "persistent-workspaces": {
+      "*": 2
+    },
+    "on-click":"activate"
+  },
+
+  "tray": {
+    "spacing": 10
+  },
+
+  "clock": {
+    "format":"{:%I:%M %p}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%A,%d %b %Y}"
+  },
+
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+
+  "memory": {
+    "format": "{}% <span color='#9b59b6'>󰍛</span>"
+  },
+
+  "pulseaudio": {
+    "scroll-step": 3, // %, can be a float
+    "format": "{volume}% <span color=\"#ffdc52\">{icon}</span>",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": " {icon} {format_source}",
+    "format-muted": " {format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "",
+    "format-icons": {
+      "headphone": "",
+      "hands-free": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    },
+    "on-click": "pavucontrol"
+  },
+
+  "disk":{
+    "path":"/home",
+    "format":"{percentage_used}% <span color='#d16a04'> </span>"
+  },
+
+  "custom/weather": {
+    "exec": "python ~/.config/waybar/scripts/weather.py",
+    "restart-interval": 300,
+    "return-type": "json"
+  },
+
+  "custom/updates": {
+    "format": "📦{}", //📦
+    "interval": 7200,                     // every two hours
+    "exec": "~/.config/waybar/scripts/updates.sh",       
+    "exec-if": "exit 0",                  // always run; consider advanced run conditions
+    "on-click": "bash -c 'foot -e sudo pacman -Syu --noconfirm && notify-send \"System\" \"System Upgraded\" ", 
+    "signal": 8
+  }, 
+
+  "custom/record": {
+    "exec": "$HOME/.config/waybar/scripts/screenrecorder status",
+    "interval": "once",
+    "signal": 1,
+    "return-type": "json",
+    "tooltip": true,
+    "format": "{}",
+    "on-click": "$HOME/.config/waybar/scripts/screenrecorder toggle fullscreen",
+    "on-click-right": "$HOME/.config/waybar/scripts/screenrecorder toggle region"
+  }
+}
+

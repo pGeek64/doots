@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+SIGNAL=1
+pidf="/tmp/waybar-screenrecorder"
+# Insert `-a` if you want to record audio
+WF_RECORDER_OPTS="--pixel-format yuv420p --audio=alsa_output.pci-0000_01_00.1.hdmi-stereo.monitor"
+# WF_RECORDER_OPTS="$WF_RECORDER_OPTS -c h264_nvenc -d /dev/dri/renderD128"
+# printf "WF_RECORDER_OPTS=%s\n" "$WF_RECORDER_OPTS"
+VIDEOEXT="mp4"
+
+if [ "$1" == "status" ]; then
+	if [ -s "$pidf" ]; then
+		awk 'BEGIN{printf "{\"text\":\"\", \"tooltip\":\"Recording\\n"}
+		NR==1{printf "PID: %s\\n", $0}
+		NR==2{printf "Save to: %s\\n", $0}
+		NR==3{printf "Log to: %s\"}\n", $0}' "$pidf"
+	else
+    printf '{"text":"<span color='\''#F60202'\''>󰻃</span>", "tooltip":"Stopped"}\n'
+	fi
+
+elif [ "$1" == "toggle" ]; then
+	if [ -s "$pidf" ]; then
+		pid=$(awk 'NR==1' "$pidf")
+		kill "$pid"
+		printf "" > "$pidf"
+	else
+		mkdir -p "$HOME/vids/screens"
+		bf="$HOME/vids/screens/$(date +'%Y-%m-%d_%H-%M-%S')"
+		vidf="$bf.$VIDEOEXT"
+		logf="$bf.log"
+		if [ "$2" == "fullscreen" ]; then
+			wf-recorder $WF_RECORDER_OPTS --file "$vidf" 2>&1 & # to add log add '1>"$logf"' after "$vidf"
+		elif [ "$2" == "region" ]; then
+			sleep 1
+			wf-recorder $WF_RECORDER_OPTS --geometry "$(slurp)" --file "$vidf" 2>&1 & # to add log add '1>"$logf"' after "$vidf"
+		else
+			printf "Argument \$2='%s' not valid (fullscreen/region)" "$2"
+			exit
+		fi
+		pid=$(jobs -p | tail -n 1)
+		printf "%d\n%s\n%s" "$pid" "$vidf" "$logf" > "$pidf"
+		disown "$pid"
+	fi
+	pkill -RTMIN+$SIGNAL waybar
+
+else
+	printf "ERROR: Argument %s not valid\n" "$1"
+fi
+

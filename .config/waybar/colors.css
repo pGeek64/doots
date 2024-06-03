@@ -1,0 +1,17 @@
+/* colors.css */
+
+:root {
+    --background-primary: @background;
+    --background-secondary: #181825;
+    --text-primary: #cdd6f4;
+    --text-secondary: #748cd2;
+    --text-accent: #C56486;
+    --text-muted: #a6adc8;
+    --border-primary: #11111b;
+    --border-secondary: #282738;
+    --accent-primary: #eba0ac;
+    --accent-secondary: #a6e3a1;
+    --accent-tertiary: #89b4fa;
+    --accent-quaternary: #cba6f7;
+    --accent-critical: #e92d4d;
+}

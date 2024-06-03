@@ -1,0 +1,11 @@
+#!/bin/sh
+
+book_dir="$HOME/dox/books/"
+selected=$(ls -r "$HOME/dox/books" | rofi -dmenu -p "Open Books" -theme ~/.config/rofi/launchers/type-1/style-3.rasi)
+
+if [ -z "$selected" ]; then
+    exit
+fi
+
+zathura "$book_dir/$selected"
+
