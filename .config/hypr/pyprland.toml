@@ -1,0 +1,11 @@
+[pyprland]
+plugins = ["magnify", "scratchpads"]
+
+[scratchpads.volume]
+animation = "fromRight"
+command = "pavucontrol"
+class = "org.pulseaudio.pavucontrol"
+lazy = true
+size = "736px 759px"
+unfocus = "hide"
+

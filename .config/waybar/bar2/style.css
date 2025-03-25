@@ -1,0 +1,87 @@
+@import '../../../.cache/wal/colors-waybar.css';
+
+* {
+  font-size: 20px;
+  /* border-radius: 5px; */
+  font-family: "Product Sans","JetBrains Mono Nerd Font",sans-serif;
+}
+
+#workspaces button {
+  font-family: "Product Sans" ;
+  border-radius: 0px;
+  padding: 0 5px;
+  font-weight: 600;
+  color: @color7;
+  background: @background;
+}
+
+#workspaces button.active {
+  color: @color7;
+  background: @color1;
+}
+
+window#waybar {
+  background: @color1;
+  color: @foreground;
+}
+
+tooltip {
+  background: @background;
+  opacity: 0.8;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #11111b;
+  font-family: "Product Sans","JetBrains Mono Nerd Font",sans-serif;
+}
+
+tooltip label{
+  color: @foreground;
+}
+
+
+#workspaces button.urgent {
+  padding: 0 5px;
+  color: @color7;
+  background: #fe0707;
+}
+
+#custom-launch_wofi,
+#custom-lock_screen,
+#custom-light_dark,
+#custom-power_btn,
+#custom-power_profile,
+#custom-weather,
+#custom-myhyprv,
+#custom-record,
+#window,
+#cpu,
+#disk,
+#custom-updates,
+#memory,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#tray,
+#temperature,
+#workspaces,
+#backlight {
+  background: @background;
+  opacity: 1;
+  padding: 0px 10px;
+  border: 0px;
+}
+
+#custom-record, #custom-weather, #memory, #tray, #custom-updates, #pulseaudio, #disk, #clock {
+  background: @background;
+  font-family: "Iosevka Aile","JetBrains Mono Nerd Font";
+}
+#pulseaudio.microphone {
+  color: #cba6f7;
+}
+#custom-notifs {
+  background: @background;
+  font-family: "JetBrains Mono Nerd Font";
+  padding: 0px 5px;
+}

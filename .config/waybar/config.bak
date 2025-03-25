@@ -1,0 +1,232 @@
+
+{
+  "layer": "top", // Waybar at top layer
+                  // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 35, // Waybar height (to be removed for auto height)
+                  // "spacing": 3,
+    "margin-left":3,
+    "margin-right":3, 
+    "margin-top":2,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": [],
+    "modules-right": ["tray","custom/updates","custom/record","pulseaudio","memory","disk","custom/weather","clock"],
+    "hyprland/workspaces": {
+      "disable-scroll": true,
+      "active-only":false,
+      "all-outputs": true,
+      "format": "{icon}",
+      "format-icons": {
+        "1": "1", //
+        "2": "2", //
+        "3": "code", //
+        "4": "msg", //
+        "5": "mus", //
+        "6": "obs",
+        "7": "dis",
+        "8": "mpv",
+        "9": "read",
+        "urgent": "  ",
+        "focused": "",
+        "default": ""
+      },
+      "persistent-workspaces": {
+        "*": 2
+      },
+      "on-click":"activate"
+    },
+    "keyboard-state": {
+      "numlock": true,
+      "capslock": true,
+      "format": "{name} {icon}",
+      "format-icons": {
+        "locked": "",
+        "unlocked": ""
+      }
+    },
+    "sway/mode": {
+      "format": "<span style=\"italic\">{}</span>"
+    },
+    "sway/scratchpad": {
+      "format": "{icon} {count}",
+      "show-empty": false,
+      "format-icons": ["", ""],
+      "tooltip": true,
+      "tooltip-format": "{app}: {title}"
+    },
+    "mpd": {
+      "format": "{stateIcon}  {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{title} - {artist}  [{elapsedTime:%M:%S}]    {volume}% ",
+      "format-disconnected": "Disconnected ",
+      "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
+
+      "unknown-tag": "N/A",
+      "interval": 1,
+      "server":"127.0.0.1",
+      "port":6600,
+      "on-click": "mpc play",
+      "on-click-right":"mpc pause",
+      "on-scroll-up":"mpc volume +3",
+      "on-scroll-down":"mpc volume -3",
+      "consume-icons": {
+        "on": " "
+      },
+      "random-icons": {
+        "on": " "
+      },
+      "repeat-icons": {
+        "on": " "
+      },
+      "single-icons": {
+        "on": "1 "
+      },
+      "state-icons": {
+        "paused": " ",
+        "playing": " "
+      },
+      "tooltip-format": "MPD (connected)",
+      "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
+    "tray": {
+      "spacing": 10
+    },
+    "clock": {
+      "format":"{:%I:%M %p}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+      "format-alt": "{:%A,%d %b %Y}"
+    },
+    "cpu": {
+      "format": "{usage}% ",
+      "tooltip": false
+    },
+    "memory": {
+      "format": "{}% <span color='#9b59b6'>󰍛</span>"
+    },
+    "temperature": {
+      // "thermal-zone": 2,
+      // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+      "critical-threshold": 80,
+      // "format-critical": "{temperatureC}°C {icon}",
+      "format": "{temperatureC}°C {icon}",
+      "format-icons": ["", "", ""]
+    },
+    "network": {
+      // "interface": "wlp2*", // (Optional) To force the use of this interface
+      "interval":10,
+      "format-wifi": "{essid} ({signalStrength}%) ",
+      "format-ethernet": "{bandwidthDownBytes}<span color=\"#6481B5\">  </span> {bandwidthUpBytes}<span color=\"#6481B5\"> </span>",
+      "tooltip-format": "{ifname} via {gwaddr} ",
+      "format-linked": "{ifname} (No IP) ",
+      "format-disconnected": "Disconnected ⚠",
+      "format-alt": "{ifname} : {ipaddr}/{cidr}  <span color='white'>󰈀</span> "
+    },
+    "pulseaudio": {
+      "scroll-step": 3, // %, can be a float
+      "format": "{volume}% <span color=\"#ffdc52\">{icon}</span>",
+      "format-bluetooth": "{volume}% {icon} {format_source}",
+      "format-bluetooth-muted": " {icon} {format_source}",
+      "format-muted": " {format_source}",
+      "format-source": "{volume}% ",
+      "format-source-muted": "",
+      "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+        "default": ["", "", ""]
+      },
+      "on-click": "pavucontrol"
+    },
+    "custom/media": {
+      "format": "{icon} {}",
+      "return-type": "json",
+      "max-length": 40,
+      "on-click": "playerctl play-pause",
+      "on-click-right": "playerctl next",
+      "on-click-middle": "playerctl previous",
+
+      "format-icons": {
+        "vlc": "<span color='#f0932b'>󱍼</span>",
+        "spotify": "<span color='#00ad57'></span>",
+        "default": "<span color='#fc2e2e'></span>"   // 
+      },
+      "escape": true,
+      "exec": "python $HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null" // Script in resources folder
+                                                                                // "exec": "$HOME/.config/waybar/scripts/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name
+    },
+    "disk":{
+      "path":"/home",
+      "format":"{percentage_used}% <span color='#d16a04'> </span>"
+    },
+    "custom/powermenu":{
+      "format": "",
+      "on-click": "sh ~/.config/rofi/powermenu/type-1/powermenu.sh",
+      "tooltip-format":" Powermenu "
+    },
+
+    "custom/launcher": {
+      "format": "",
+      "on-click": "sh ~/.config/rofi/launchers/type-1/launcher.sh",
+      "tooltip":"Apps",
+      "tooltip-format":" Apps "
+    },
+
+    "custom/weather": {
+      "exec": "python ~/.config/waybar/scripts/weather.py",
+      "restart-interval": 300,
+      "return-type": "json"
+    },
+    "custom/updates": {
+      "format": "📦{}", //📦
+      "interval": 7200,                     // every two hours
+      "exec": "~/.config/waybar/scripts/updates.sh",       
+      "exec-if": "exit 0",                  // always run; consider advanced run conditions
+      "on-click": "bash -c 'kitty -e sudo pacman -Syu --noconfirm && notify-send \"System\" \"System Upgraded\" && curl -d \"System Upgraded on $(date +\"%A, %d %b %l:%M %p\")\" ntfy.sh/1aB-9Cf'",
+      "signal": 8
+    },
+    "custom/playerctl":{
+      "format": "{icon}",
+      "return-type": "json",
+      "max-length": 64,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click": "playerctl play-pause",
+      "on-click-middle": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span color='#80a4d6'>󰒮 󰏥 󰒭</span>",
+        "Paused": "<span color='#5770aa'>󰒮 󰐌 󰒭</span>"
+      }
+    },
+    "custom/playerlabel": {
+      "format": "{}",
+      "return-type": "json",
+      "max-length": 48,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span color='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span color='#928374'>󰒮 󰏥 󰒭</span>"
+      }
+    },
+    "custom/record": {
+      "exec": "$HOME/.config/waybar/scripts/screenrecorder status",
+      "interval": "once",
+      "signal": 1,
+      "return-type": "json",
+      "tooltip": true,
+      "format": "{}",
+      "on-click": "$HOME/.config/waybar/scripts/screenrecorder toggle fullscreen",
+      "on-click-right": "$HOME/.config/waybar/scripts/screenrecorder toggle region"
+    }
+
+
+}

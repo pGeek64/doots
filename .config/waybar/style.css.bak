@@ -1,0 +1,165 @@
+@import '../../.cache/wal/colors-waybar.css';
+
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    /* font-family: "Iosevka Aile","Product Sans","JetBrains Mono Nerd Font",sans-serif; */
+    font-size: 23px;
+	border-radius: 5px;
+    /* font-weight: 600; */
+}
+
+#workspaces button {
+    font-family: "Product Sans" ;
+    padding: 0 5px;
+    font-weight: 600;
+    color: @color1;
+}
+
+window#waybar {
+    background: rgba(2, 0, 7, 0);
+    color: @foreground;
+}
+
+tooltip {
+    background: @background;
+    opacity: 0.8;
+    border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #11111b;
+    font-family: "Product Sans","JetBrains Mono Nerd Font",sans-serif;
+}
+
+tooltip label{
+    color: @foreground;
+}
+
+
+
+#workspaces button.active {
+	color: @color7;
+    
+	/*background-image: linear-gradient(to left, transparent 25%, #C56486 30%, #C56486 70%, transparent 70%);
+    background-position: 0% 93%;
+    background-size: auto 5%;
+    background-repeat: no-repeat;*/
+}
+
+/* #workspaces button.focused {
+    color: transparent;
+    background: #eba0ac;
+    border-radius: 10px;
+} */
+
+#workspaces button.urgent {
+    padding: 0 5px;
+    color: #fe0707;
+    background: @background;
+}
+
+
+
+#custom-launch_wofi,
+#custom-lock_screen,
+#custom-light_dark,
+#custom-power_btn,
+#custom-power_profile,
+#custom-weather,
+#custom-myhyprv,
+#custom-record,
+#window,
+#cpu,
+#disk,
+#custom-updates,
+#memory,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#tray,
+#temperature,
+#workspaces,
+#backlight {
+    background: @background;
+    opacity: 1;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 5px;
+    border: 0px;
+}
+
+#custom-weather, #memory{
+    border-radius: 10px 0px 0px 10px;
+}
+
+#custom-record {
+  border-radius: 10px;
+  padding-right: 15px;
+  margin-right: 6px;
+}
+#tray, #custom-updates, #pulseaudio, #disk {
+    border-radius: 10px;
+    margin-right: 6px;
+  	padding: 7px /* 9px */;
+}
+#pulseaudio{
+  padding-right: 20px;
+}
+#clock, #disk  {
+    border-radius: 0px 10px 10px 0px;
+}
+
+#temperature.critical {
+    color: #e92d4d;
+}
+
+#workspaces {
+  padding-right: 5px;
+  padding-left: 5px;
+	margin-right: 6px;
+	border-radius: 10px
+}
+
+#custom-power_profile {
+    color: #a6e3a1;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#window {
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+#pulseaudio.microphone {
+    color: #cba6f7;
+    border-radius: 0px 10px 10px 0px;
+}
+#custom-playerctl {
+	margin-top: 5px;
+	background: #181825;
+	padding-left: 14px;
+	padding-right: 14px;
+	border-radius: 20px;
+    margin-bottom: 0px;
+	margin-left: 0px;
+	font-weight: normal;
+	font-style: normal;
+	font-size: 18px;
+	border-bottom: 3px solid #89B4FA;
+	margin-right: 6px;
+}
+
+#custom-playerlabel {
+	margin-top: 5px;
+	color:#ddcfde;
+
+    /*border-left: solid 1px #282738;*/
+    /*border-right: solid 1px #282738;*/
+
+    font-weight: 600;
+    font-style: normal;
+}

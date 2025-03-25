@@ -1,0 +1,8 @@
+#!/bin/bash
+
+notif_count=$(swaync-client -c)
+if [ "$notif_count" -gt 0 ]; then
+  echo " "
+else
+  echo " "
+fi

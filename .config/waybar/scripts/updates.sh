@@ -6,6 +6,6 @@ if [ -z "$updates" ]; then
   echo "Updated"
 else
   echo "$updates" | wc -l
-  echo "$updates" | column -t | tr '\n' '\r'
+  # echo "$updates" | column -t | tr '\n' '\r'
 fi
 

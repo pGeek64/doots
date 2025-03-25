@@ -15,7 +15,7 @@ if [ "$1" == "status" ]; then
 		NR==2{printf "Save to: %s\\n", $0}
 		NR==3{printf "Log to: %s\"}\n", $0}' "$pidf"
 	else
-    printf '{"text":"<span color='\''#F60202'\''>󰻃</span>", "tooltip":"Stopped"}\n'
+    printf '{"text":"<span color='\''red'\''>󰻃</span>", "tooltip":"Stopped"}\n'
 	fi
 
 elif [ "$1" == "toggle" ]; then

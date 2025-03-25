@@ -3,26 +3,27 @@
 #######################################
 
 # Pacman - https://wiki.archlinux.org/index.php/Pacman_Tips
-alias pacupg='sudo pacman -Syu'
-alias pacins='sudo pacman -S'
-alias paclean='sudo pacman -Sc'
-alias pacin='sudo pacman -U'
-alias paclr='sudo pacman -Scc'
-alias pacrmv='sudo pacman -Rnsc'
-alias pacrem='pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro sudo pacman -Rn'
+alias pacupg='doas pacman -Syu'
+alias pacins='doas pacman -S'
+alias paclean='doas pacman -Sc'
+alias pacin='doas pacman -U'
+alias paclr='doas pacman -Scc'
+alias pacrmv='doas pacman -Rnsc'
+# alias pacrem='pacman -Qq | fzf --multi --preview 'pacman -Qi {1}' | xargs -ro doas pacman -Rn'
+alias pacrem='paruz -R'
 alias pacrep='pacman -Si'
 alias pacreps='pacman -Ss'
 alias pacloc='pacman -Qi'
 alias paclocs='pacman -Qs'
-alias pacinsd='sudo pacman -S --asdeps'
-alias pacmir='sudo pacman -Syy'
-alias paclsorphans='sudo pacman -Qdt'
-alias pacrmorphans='sudo pacman -Rs $(pacman -Qtdq)'
-alias pacfileupg='sudo pacman -Fy'
+alias pacinsd='doas pacman -S --asdeps'
+alias pacmir='doas pacman -Syy'
+alias paclsorphans='doas pacman -Qdt'
+alias pacrmorphans='doas pacman -Rs $(pacman -Qtdq)'
+alias pacfileupg='doas pacman -Fy'
 alias pacfiles='pacman -F'
 alias pacls='pacman -Ql'
 alias pacown='pacman -Qo'
-alias pacupd="sudo pacman -Sy"
+alias pacupd="doas pacman -Sy"
 alias pacsize='expac -sH M "%-30n %m" | sort -rhk 2 | less '
 function paclist() {
   # Based on https://bbs.archlinux.org/viewtopic.php?id=93683
@@ -48,14 +49,14 @@ function pacdisowned() {
   comm -23 "$fs" "$db"
 }
 
-alias pacmanallkeys='sudo pacman-key --refresh-keys'
+alias pacmanallkeys='doas pacman-key --refresh-keys'
 
 function pacmansignkeys() {
   local key
   for key in $@; do
-    sudo pacman-key --recv-keys $key
-    sudo pacman-key --lsign-key $key
-    printf 'trust\n3\n' | sudo gpg --homedir /etc/pacman.d/gnupg \
+    doas pacman-key --recv-keys $key
+    doas pacman-key --lsign-key $key
+    printf 'trust\n3\n' | doas gpg --homedir /etc/pacman.d/gnupg \
       --no-permission-warning --command-fd 0 --edit-key $key
   done
 }
@@ -87,27 +88,27 @@ fi
 #######################################
 
 if (( $+commands[aura] )); then
-  alias auin='sudo aura -S'
-  alias aurin='sudo aura -A'
-  alias auclean='sudo aura -Sc'
-  alias auclr='sudo aura -Scc'
-  alias auins='sudo aura -U'
-  alias auinsd='sudo aura -S --asdeps'
-  alias aurinsd='sudo aura -A --asdeps'
+  alias auin='doas aura -S'
+  alias aurin='doas aura -A'
+  alias auclean='doas aura -Sc'
+  alias auclr='doas aura -Scc'
+  alias auins='doas aura -U'
+  alias auinsd='doas aura -S --asdeps'
+  alias aurinsd='doas aura -A --asdeps'
   alias auloc='aura -Qi'
   alias aulocs='aura -Qs'
   alias aulst='aura -Qe'
-  alias aumir='sudo aura -Syy'
-  alias aurph='sudo aura -Oj'
-  alias aure='sudo aura -R'
-  alias aurem='sudo aura -Rns'
+  alias aumir='doas aura -Syy'
+  alias aurph='doas aura -Oj'
+  alias aure='doas aura -R'
+  alias aurem='doas aura -Rns'
   alias aurep='aura -Si'
   alias aurrep='aura -Ai'
   alias aureps='aura -As --both'
   alias auras='aura -As --both'
-  alias auupd="sudo aura -Sy"
-  alias auupg='sudo sh -c "aura -Syu              && aura -Au"'
-  alias ausu='sudo sh -c "aura -Syu --no-confirm && aura -Au --no-confirm"'
+  alias auupd="doas aura -Sy"
+  alias auupg='doas sh -c "aura -Syu              && aura -Au"'
+  alias ausu='doas sh -c "aura -Syu --no-confirm && aura -Au --no-confirm"'
 
   # extra bonus specially for aura
   alias auown="aura -Qqo"
@@ -181,12 +182,12 @@ fi
 # Check Arch Linux PGP Keyring before System Upgrade to prevent failure.
 function upgrade() {
   echo ":: Checking Arch Linux PGP Keyring..."
-  local installedver="$(sudo pacman -Qi archlinux-keyring | grep -Po '(?<=Version         : ).*')"
-  local currentver="$(sudo pacman -Si archlinux-keyring | grep -Po '(?<=Version         : ).*')"
+  local installedver="$(doas pacman -Qi archlinux-keyring | grep -Po '(?<=Version         : ).*')"
+  local currentver="$(doas pacman -Si archlinux-keyring | grep -Po '(?<=Version         : ).*')"
   if [ $installedver != $currentver ]; then
     echo " Arch Linux PGP Keyring is out of date."
     echo " Updating before full system upgrade."
-    sudo pacman -Sy --needed --noconfirm archlinux-keyring
+    doas pacman -Sy --needed --noconfirm archlinux-keyring
   else
     echo " Arch Linux PGP Keyring is up to date."
     echo " Proceeding with full system upgrade."
@@ -198,8 +199,8 @@ function upgrade() {
   elif (( $+commands[pacaur] )); then
     pacaur -Syu
   elif (( $+commands[aura] )); then
-    sudo aura -Syu
+    doas aura -Syu
   else
-    sudo pacman -Syu
+    doas pacman -Syu
   fi
 }

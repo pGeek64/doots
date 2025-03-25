@@ -1,8 +1,9 @@
 @import '../../.cache/wal/colors-waybar.css';
 
 * {
-    font-size: 23px;
-	border-radius: 5px;
+  font-size: 23px;
+  border-radius: 5px;
+  font-family: "Product Sans","JetBrains Mono Nerd Font",sans-serif;
 }
 
 #workspaces button {
@@ -70,6 +71,7 @@ tooltip label{
 }
 
 #custom-weather, #memory{
+    font-family: "Iosevka Aile","JetBrains Mono Nerd Font";
     border-radius: 10px 0px 0px 10px;
 }
 
@@ -79,14 +81,17 @@ tooltip label{
   margin-right: 6px;
 }
 #tray, #custom-updates, #pulseaudio, #disk {
+    font-family: "Iosevka Aile","JetBrains Mono Nerd Font";
     border-radius: 10px;
     margin-right: 6px;
   	padding: 7px /* 9px */;
 }
+
 #pulseaudio{
-  padding-right: 20px;
+  padding-right: 10px;
 }
 #clock, #disk  {
+    font-family: "Iosevka Aile","JetBrains Mono Nerd Font";
     border-radius: 0px 10px 10px 0px;
 }
 #workspaces {
