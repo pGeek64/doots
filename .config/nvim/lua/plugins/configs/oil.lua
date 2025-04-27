@@ -1,8 +1,11 @@
-local oil = require("oil")
+local oil = require('oil')
 oil.setup({
   default_file_explorer = true,
   delete_to_trash = true,
   skip_confirm_for_simple_edits = true,
+  columns = {
+    "icon", -- "permissions", "size", "mtime", or all of them
+  },
   view_options = {
     show_hidden = true,
     natural_order = true,

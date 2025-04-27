@@ -25,7 +25,7 @@ alias pacls='pacman -Ql'
 alias pacown='pacman -Qo'
 alias pacupd="doas pacman -Sy"
 alias pacsize='expac -sH M "%-30n %m" | sort -rhk 2 | less '
-function paclist() {
+function paclst() {
   # Based on https://bbs.archlinux.org/viewtopic.php?id=93683
   pacman -Qqe | \
     xargs -I '{}' \
