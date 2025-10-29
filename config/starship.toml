@@ -1,0 +1,91 @@
+add_newline = false
+format = '[$os \[](white bold)$username$hostname$directory[\]](white bold)$git_branch$git_status$python$c$rust$character'
+# "$schema" = 'https://starship.rs/config-schema.json'
+# format = '\[\$\] '
+# format = '[\[](white bold)\]'
+# [username]
+command_timeout = 2000
+right_format = "$cmd_duration"
+[aws]
+format = '\[[$symbol($profile)(\($region\))(\[$duration\])]($style)\]'
+
+[bun]
+format = '\[[$symbol($version)]($style)\]'
+
+[c]
+format = '\[[$symbol($version(-$name))]($style)\]'
+
+[character]
+format = '$symbol'
+success_symbol = '[\$](white) ' #➜
+error_symbol = '[✗](bold red) '
+vimcmd_visual_symbol = '[](bold yellow) '
+vimcmd_symbol = '[](bold yellow) '
+
+[cmd_duration]
+min_time = 4000
+format = '[$duration](blue)'
+
+[directory]
+format = ' [$path](blue bold)[$read_only]($read_only_style)'
+truncation_length = 3
+truncation_symbol = '../'
+read_only = '🔒'
+read_only_style = 'orange bold'
+home_symbol = '~'
+
+[git_branch]
+format = '\[[$symbol$branch]($style)\]'
+
+[git_status]
+format = '([\[$all_status$ahead_behind\]]($style))'
+
+[hostname]
+ssh_only = false
+format = '[@](white bold)[$hostname]($style)'
+style = 'purple bold'
+
+[lua]
+symbol = ' '
+format = '\[[$symbol($version)]($style)\]'
+
+[memory_usage]
+format = '\[$symbol[$ram( | $swap)]($style)\]'
+
+[nix_shell]
+format = '\[[$symbol$state( \($name\))]($style)\]'
+
+[nodejs]
+format = '\[[$symbol($version)]($style)\]'
+
+[os]
+format = "[$symbol]($style)"
+style = "bold blue"
+disabled = false
+
+[os.symbols]
+Arch = "󰣇"
+Android = " "
+
+[package]
+format = '\[[$symbol$version]($style)\]'
+
+[php]
+format = '\[[$symbol($version)]($style)\]'
+
+[python]
+format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+
+[rust]
+format = '\[[$symbol($version)]($style)\]'
+
+[sudo]
+format = '\[[as $symbol]\]'
+
+[time]
+format = '\[[$time]($style)\]'
+
+[username]
+style_root = 'bold red'
+format = '[$user](bold yellow)'
+show_always = true

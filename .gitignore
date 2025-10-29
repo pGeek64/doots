@@ -1,0 +1,4 @@
+config/**/.git/
+config/**/.gitignore
+config/**/.gitattributes
+
